@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Bienvenidos";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">Bienvenido a Cita Salud</h1>
+            <p class="lead">Tu plataforma para gestionar citas médicas de manera fácil y rápida.</p>
+            <p>Descubre cómo Cita Salud puede facilitar tu experiencia con la atención médica.</p>
+        </div>
+        <div class="col-md-6">
+            <img src="~/images/derma.png" alt="Medicina 1" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6 order-md-2">
+            <h2>Agenda tus citas médicas</h2>
+            <p>Cita Salud te permite agendar fácilmente tus citas médicas con solo unos clics. Gestiona tu tiempo y evita largas esperas en la sala de espera.</p>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="~/images/pedia.png" alt="Medicina 2" class="img-fluid rounded">
+        </div>
+    </div>
+</div>
+<div class="container mt-5 text-center">
+    <h3>Descubre cómo Cita Salud puede mejorar tu experiencia con la atención médica</h3>
+    <p>
+        @if (Context.Session.GetInt32("UsuarioId") == null)
+        {
+            <a class="btn btn-primary" asp-area="" asp-controller="User" asp-action="Register" role="button">Regístrate Ahora</a>
+        }
+        else
+        {
+            <a class="btn btn-primary" asp-area="" asp-controller="User" asp-action="Profile" role="button">Perfil</a>
+        }
+    </p>
+</div>

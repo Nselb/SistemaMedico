@@ -1,0 +1,51 @@
+﻿@model RegisterDoctorModel
+@{
+    ViewData["Title"] = "Registrar Doctor";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 class="text-center">Registro de Doctor</h2>
+
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Nombre:</label>
+                    <input asp-for="Name" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Correo:</label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label">Contraseña:</label>
+                    <input asp-for="Password" type="password" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ConfirmPassword" class="form-label">Confirmar Contraseña:</label>
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="SpecialityId" class="form-label">Especialidad:</label>
+                    <select asp-for="SpecialityId" class="form-select">
+                        <option value="">Seleccione una especialidad</option>
+                        @foreach (var especialidad in Model.Specialities)
+                        {
+                            <option value="@especialidad.Id">@especialidad.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <button type="submit" class="btn btn-primary">Registrar Doctor</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

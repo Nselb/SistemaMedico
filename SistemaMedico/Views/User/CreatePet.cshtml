@@ -1,0 +1,18 @@
+﻿@model Pet
+@{
+    ViewData["Title"] = "Title";
+}
+
+<div class="container mt-5">
+    <h2>Crear Nueva Mascota</h2>
+
+    <form asp-action="CreatePet" method="post">
+        <div class="form-group">
+            <label asp-for="Name">Nombre de la Mascota:</label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Mascota</button>
+    </form>
+</div>

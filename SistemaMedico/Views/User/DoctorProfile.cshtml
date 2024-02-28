@@ -1,0 +1,57 @@
+﻿@model ProfileModel
+@{
+    ViewData["Title"] = "Perfil";
+    var isDoc = Context.Session.GetInt32("UsuarioRol") == 1;
+}
+
+@if (isDoc)
+{
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+
+            <div class="col-md-6">
+                <h2 class="text-center">Perfil de Usuario</h2>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label fw-bold">Nombre:</label>
+                    <p class="form-control-plaintext">@Model.Name</p>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-bold">Correo:</label>
+                    <p class="form-control-plaintext">@Model.Email</p>
+                </div>
+
+                <div class="mb-3 text-center">
+                    <a asp-area="" asp-controller="User" asp-action="ChangePassword" class="btn btn-link">Cambiar Contraseña</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3 text-center">
+                    <a asp-area="" asp-controller="User" asp-action="Appointment" class="btn btn-primary">Agendar Citas Médicas</a>
+                </div>
+                @if (Model.Appointments.Count > 0)
+                {
+                    <div class="mb-3">
+                        <h3>Listado de Citas Médicas:</h3>
+                        <ul>
+                            @foreach (var cita in Model.Appointments)
+                            {
+                                <li>@cita.Date.ToShortDateString() - @cita.Time.ToString(@"hh\:mm") <a asp-area="" asp-controller="User" asp-action="RegisterReceta" asp-route-appointmentId="@cita.Id" class="btn btn-link">Registrar receta</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <p>No hay citas médicas programadas.</p>
+                }
+            </div>
+        </div>
+    </div>
+
+}
+else
+{
+    <h1>Acceso prohibido!</h1>
+}
